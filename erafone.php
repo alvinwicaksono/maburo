@@ -33,10 +33,15 @@
 			$dom->loadHTML($output);
 			$xpath = new DOMXpath($dom);
 			$results = $xpath->query('//ol[@class="products list items product-items"]/li/div/div[@class="product details product-item-details"]');
+			$gambar = $xpath->query('//div[@class="product-item-info"]/a/span/span[@class="product-image-wrapper"]');
 
 			echo "<h3>Hasil Pencarian untuk kata ' ".$_POST['keyword']." '</h3>";
 			foreach($results as $result){
 				echo $result->childNodes[1]->nodeValue." - ".$result->childNodes[3]->nodeValue."<br>";
+			}
+
+			foreach ($gambar as $gambars) {
+				echo '<img src=" $gambar->childNodes[1]->nodeValue"/>';
 			}
 		}
 		

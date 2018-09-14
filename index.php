@@ -47,6 +47,7 @@
 			$xpathOke = new DOMXpath($domOke);
 
 			$resultsOke = $xpathOke->query('//ul[@id="product_list"]/li/div/div[@class="product_info_container small-8 medium-12 large-12 columns"]');
+			$resultsOkeImg = $xpathOke->query('//ul[@id="product_list"]/li/div/span[@class="product_image_container small-4 medium-12 large-12 columns"]/a');
 
 		//Erafone -----------------------------------------------
 
@@ -61,32 +62,49 @@
 			$domEra->loadHTML($outputEra);
 			$xpathEra = new DOMXpath($domEra);
 			$resultsEra = $xpathEra->query('//ol[@class="products list items product-items"]/li/div/div[@class="product details product-item-details"]');
-
-
-
-		//CETAK HASIL -------------------------------------------	
-
-			echo "<h3>Hasil Pencarian untuk HP ' ".$_POST['keyword']." '</h3>";
-
-			echo "Grand Celluler <br>";
-			foreach($resultsGC as $resultGC){
-				echo $resultGC->childNodes[1]->nodeValue." - ".$resultGC->childNodes[5]->nodeValue."<br>";
-			}
-			echo "------------------------------------------------<br>";
-			echo "Oke Shop <br>";
-			foreach($resultsOke as $resultOke){
-				echo $resultOke->childNodes[0]->nodeValue." - ".$resultOke->childNodes[1]->nodeValue."<br>";
-			}
-
-			echo "------------------------------------------------<br>";
-			echo "Erafone <br>";
-			foreach($resultsEra as $resultEra){
-				echo $resultEra->childNodes[1]->nodeValue." - ".$resultEra->childNodes[3]->nodeValue."<br>";
-			}
 		}
+		?>
+
 		
- 	?>
-
-</body>
+		<table>
+			<tr>
+				<?php
+					//CETAK HASIL -------------------------------------------	
+					echo "<h3>Hasil Pencarian untuk HP ' ".$_POST['keyword']." '</h3>";	
+				?>
+			</tr>
+			<tr>
+				<td>Grand Cellular</td>
+				<td>OkeShop</td>
+				<td>Erafone</td>
+			</tr>
+			<tr>
+				<td>
+				<?php	
+					foreach($resultsGC as $resultGC){
+						echo $resultGC->childNodes[1]->nodeValue." - ".$resultGC->childNodes[5]->nodeValue."<br>";
+					}
+				?>
+				</td>
+				<td>
+				<?php
+					foreach ($resultsOkeImg as $resultOkeImg){
+						echo $resultOkeImg->childNodes[1]->nodeValue."<br>";
+					}
+					foreach($resultsOke as $resultOke){
+						echo $resultOke->childNodes[0]->nodeValue." - ".$resultOke->childNodes[1]->nodeValue."<br>";
+					}
+				?>
+				</td>
+				<td>
+				<?php
+					foreach($resultsEra as $resultEra){
+					echo $resultEra->childNodes[1]->nodeValue." - ".$resultEra->childNodes[3]->nodeValue."<br>";
+					}
+				?>
+				</td>
+			</tr>
+		</table>
+	
+	</body>
 </html>
-
