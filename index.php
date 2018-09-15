@@ -32,6 +32,8 @@
 
 			$resultsGC = $xpathGC->query('//div[@id="content"]/div[@class="row"]/div/div[@class="product-thumb"]/div/div[@class="caption"]');
 
+			$imagesGC = $xpathGC->query('//a/img[@class="img-responsive"]//attribute::src');
+
 		//OkeShop ---------------------------------------------
 
 			$urlOke = "http://www.oke.com/search?controller=search&orderby=position&orderway=desc&search_query=".$_POST['keyword']."&submit_search=Search";
@@ -47,7 +49,8 @@
 			$xpathOke = new DOMXpath($domOke);
 
 			$resultsOke = $xpathOke->query('//ul[@id="product_list"]/li/div/div[@class="product_info_container small-8 medium-12 large-12 columns"]');
-			$resultsOkeImg = $xpathOke->query('//ul[@id="product_list"]/li/div/span[@class="product_image_container small-4 medium-12 large-12 columns"]/a');
+
+			$imagesOke = $xpathOke->query('//a[@class="product_img_link product_image"]/img//attribute::src');
 
 		//Erafone -----------------------------------------------
 
@@ -61,7 +64,10 @@
 			$domEra = new DOMDocument();
 			$domEra->loadHTML($outputEra);
 			$xpathEra = new DOMXpath($domEra);
-			$resultsEra = $xpathEra->query('//ol[@class="products list items product-items"]/li/div/div[@class="product details product-item-details"]');
+			$resultsEra = $xpathEra->query('//ol[@class="products list items product-items"]/li/div[@class="product-item-info"]');
+			
+			$imagesEra = $xpathEra->query('//span/img[@class="product-image-photo"]//attribute::src');
+
 		}
 		?>
 
@@ -80,27 +86,30 @@
 			</tr>
 			<tr>
 				<td>
-				<?php	
-					foreach($resultsGC as $resultGC){
-						echo $resultGC->childNodes[1]->nodeValue." - ".$resultGC->childNodes[5]->nodeValue."<br>";
+				<?php
+				//GRAND CELLULAR	
+					foreach($resultsGC as $indexGC => $resultGC){
+						echo "<img src=".$imagesGC[$indexGC]->nodeValue."><br>".$resultGC->childNodes[1]->nodeValue." - ".$resultGC->childNodes[5]->nodeValue."<br>";
 					}
 				?>
 				</td>
 				<td>
 				<?php
-					foreach ($resultsOkeImg as $resultOkeImg){
-						echo $resultOkeImg->childNodes[1]->nodeValue."<br>";
-					}
-					foreach($resultsOke as $resultOke){
-						echo $resultOke->childNodes[0]->nodeValue." - ".$resultOke->childNodes[1]->nodeValue."<br>";
+
+				//OKESHOP
+					foreach($resultsOke as $indexOke => $resultOke){
+						echo "<img src=".$imagesOke[$indexOke]->nodeValue."><br>".$resultOke->childNodes[0]->nodeValue." - ".$resultOke->childNodes[1]->nodeValue."<br>";
 					}
 				?>
 				</td>
 				<td>
 				<?php
-					foreach($resultsEra as $resultEra){
-					echo $resultEra->childNodes[1]->nodeValue." - ".$resultEra->childNodes[3]->nodeValue."<br>";
+
+				//ERAFONE
+					foreach($resultsEra as $indexEra => $resultEra){
+					echo "<img src=".$imagesEra[$indexEra]->nodeValue."><br>".$resultEra->childNodes[1]->nodeValue." - ".$resultEra->childNodes[3]->nodeValue."<br><br>";
 					}
+					
 				?>
 				</td>
 			</tr>
