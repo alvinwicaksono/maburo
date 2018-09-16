@@ -233,7 +233,7 @@
     	}
     ?>
 
-    	 <!--================Clients Logo Area =================-->
+    <!--================Clients Logo Area =================-->
         <section class="clients_logo_area">
         	<div class="container">
         		<div class="main_title">
@@ -260,6 +260,57 @@
         	</div>
         </section>
         <!--================End Clients Logo Area =================-->
+
+
+    	<!--================Latest Product Area =================-->
+    <?php 
+    	ini_set('display_errors', 'off');
+
+    	//MAJALAH GSM ARENA
+
+    	$urlGSM = "https://www.gsmarena.com/";
+
+			$chGSM = curl_init();
+			curl_setopt($chGSM, CURLOPT_URL, $urlGSM);
+			curl_setopt($chGSM, CURLOPT_RETURNTRANSFER, true);
+			$outputGSM = curl_exec($chGSM);
+			curl_close($chGSM);
+
+			$domGSM = new DOMDocument();
+			$domGSM->loadHTML($outputGSM);
+			$xpathGSM = new DOMXpath($domGSM);
+
+			$resultsGSM = $xpathGSM->query('//div[@class="module module-phones module-instores"]/div/a[@class="module-phones-link"]');
+
+			$imagesGSM = $xpathGSM->query('//div[@class="module module-phones module-instores"]/div/a[@class="module-phones-link"]/img//attribute::src');
+     ?>
+        <section class="feature_product_area latest_product_area">
+        	<div class="main_box">
+				<div class="container">
+					<div class="feature_product_inner">
+						<div class="main_title">
+							<h2>Latest Products</h2>
+							<p>Smartphone yang baru saja keluar versi Majalah GSM Arena.</p>
+						</div>
+						<div class="latest_product_inner row">
+				<?php 
+					foreach($resultsGSM as $indexGSM => $resultGSM){
+						echo '<div class="col-lg-3 col-md-4 col-sm-6">
+								<div class="f_p_item">
+									<div class="f_p_img">
+										<img class="img-fluid" src="'.$imagesGSM[$indexGSM]->nodeValue.'" alt="">
+									</div>
+									<a href="#"><h4>'.$resultGSM->nodeValue.'</h4></a>
+								</div>
+							</div>';
+					}	
+				 ?>	
+						</div>
+					</div>
+				</div>
+        	</div>
+        </section>
+        <!--================End Latest Product Area =================-->
 
 
         <!--================ start footer Area  =================-->	
