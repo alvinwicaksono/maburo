@@ -31,9 +31,9 @@
 					</div>
 					<div class="float-right">
 						<ul class="header_social">
-							<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-							<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-							<li><a href="#"><i class="fa fa-instagram"></i></a></li>
+							<li><a href="https://web.facebook.com/abed.petraprasetya"><i class="fa fa-facebook"></i></a></li>
+							<li><a href="https://twitter.com/AbednegoPetra"><i class="fa fa-twitter"></i></a></li>
+							<li><a href="https://www.instagram.com/bebedsky_/"><i class="fa fa-instagram"></i></a></li>
 						</ul>
 					</div>
            		</div>	
@@ -51,7 +51,7 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 							<ul class="nav navbar-nav menu_nav ml-auto">
-								<li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li> 
+								<li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li> 
 								<li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
 								<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 							</ul>
@@ -74,7 +74,7 @@
 							<h3>TUKUO !</h3>
 							<p>Mencari harga Smartphone terbaik dari 3 website terkenal, yaitu erafone.com, oke.com dan grandcellular.com </p>
 							<form action="" method="post">
-								<input class="white_bg_btn" type="text" name="keyword" placeholder="Keyword" />
+								<input class="search_bg_btn" type="text" name="keyword" placeholder="Keyword" />
 								<input class="white_bg_btn" type="submit" value="C A R I"/>
 							</form>
 						</div>
@@ -149,48 +149,91 @@
 		}
 		?>
 
-        <table>
-			<tr>
-				<?php
-					//CETAK HASIL -------------------------------------------	
-					echo "<h3>Hasil Pencarian untuk HP ' ".$_POST['keyword']." '</h3>";	
-				?>
-			</tr>
-			<tr>
-				<td>Grand Cellular</td>
-				<td>OkeShop</td>
-				<td>Erafone</td>
-			</tr>
-			<tr>
-				<td>
-				<?php
-				//GRAND CELLULAR	
-					foreach($resultsGC as $indexGC => $resultGC){
-						echo "<img src=".$imagesGC[$indexGC]->nodeValue."><br>".$resultGC->childNodes[1]->nodeValue." - ".$resultGC->childNodes[5]->nodeValue."<br>";
-					}
-				?>
-				</td>
-				<td>
-				<?php
+	<?php 
+		if (isset($_POST["keyword"])) {
+	?>
 
-				//OKESHOP
-					foreach($resultsOke as $indexOke => $resultOke){
-						echo "<img src=".$imagesOke[$indexOke]->nodeValue."><br>".$resultOke->childNodes[0]->nodeValue." - ".$resultOke->childNodes[1]->nodeValue."<br>";
-					}
-				?>
-				</td>
-				<td>
-				<?php
+		<!--================Feature Product Area =================-->
+        <section class="feature_product_area">
+        	<div class="main_box">
+				<div class="container">
+					<?php 
+						echo "<h2 class='main_title'>Hasil Pencarian untuk ".$_POST['keyword']."</h2><br><br>";
+					 ?>
+					<div class="feature_product_inner">
+						<div class="main_title">
+							<h2>Grand Cellular</h2>
+						</div>
+						<div class="feature_p_slider owl-carousel">
 
-				//ERAFONE
-					foreach($resultsEra as $indexEra => $resultEra){
-					echo "<img src=".$imagesEra[$indexEra]->nodeValue."><br>".$resultEra->childNodes[1]->nodeValue." - ".$resultEra->childNodes[3]->nodeValue."<br><br>";
-					}
-					
-				?>
-				</td>
-			</tr>
-		</table>
+						<?php 
+
+						//GRAND CELLULAR ================================>>
+						foreach($resultsGC as $indexGC => $resultGC){
+						echo '<div class="item">
+								<div class="f_p_item">
+									<div class="f_p_img">
+										<img class="img-fluid" src="'.$imagesGC[$indexGC]->nodeValue.'" alt="">
+									</div>
+									<a href="#"><h4>'.$resultGC->childNodes[1]->nodeValue.'</h4></a>
+									<h5>'.$resultGC->childNodes[5]->nodeValue.'</h5>
+								</div>
+							</div>';
+						}
+						?>
+						</div>
+						<br>
+						<div class="main_title">
+							<h2>Oke Shop</h2>
+						</div>
+						<div class="feature_p_slider owl-carousel">
+
+						<?php 
+
+						//OKE SHOP ================================>>
+						foreach($resultsOke as $indexOke => $resultOke){
+						echo '<div class="item">
+								<div class="f_p_item">
+									<div class="f_p_img">
+										<img class="img-fluid" src="'.$imagesOke[$indexOke]->nodeValue.'" alt="">
+									</div>
+									<a href="#"><h4>'.$resultOke->childNodes[0]->nodeValue.'</h4></a>
+									<h5>'.$resultOke->childNodes[1]->nodeValue.'</h5>
+								</div>
+							</div>';
+						}
+						?>
+						</div>
+						<br>
+						<div class="main_title">
+							<h2>Erafone</h2>
+						</div>
+						<div class="feature_p_slider owl-carousel">
+
+						<?php 
+
+						//OKE SHOP ================================>>
+						foreach($resultsEra as $indexEra => $resultEra){
+						echo '<div class="item">
+								<div class="f_p_item">
+									<div class="f_p_img">
+										<img class="img-fluid" src="'.$imagesEra[$indexEra]->nodeValue.'" alt="">
+									</div>
+									<a href="#"><h4>'.$resultEra->childNodes[1]->nodeValue.'</h4></a>
+									<h5>'.$resultEra->childNodes[3]->nodeValue.'</h5>
+								</div>
+							</div>';
+						}
+						?>
+						</div>
+					</div>
+				</div>
+        	</div>
+        </section>
+        <!--================End Feature Product Area =================-->
+    <?php 
+    	}
+    ?>
 
         <!--================ start footer Area  =================-->	
         <footer class="footer-area">
@@ -207,6 +250,23 @@
             </div>
         </footer>
 		<!--================ End footer Area  =================-->
+
+
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/popper.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/stellar.js"></script>
+        <script src="vendors/lightbox/simpleLightbox.min.js"></script>
+        <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+        <script src="vendors/isotope/imagesloaded.pkgd.min.js"></script>
+        <script src="vendors/isotope/isotope-min.js"></script>
+        <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+        <script src="js/jquery.ajaxchimp.min.js"></script>
+        <script src="vendors/counter-up/jquery.waypoints.min.js"></script>
+        <script src="vendors/flipclock/timer.js"></script>
+        <script src="vendors/counter-up/jquery.counterup.js"></script>
+        <script src="js/mail-script.js"></script>
+        <script src="js/theme.js"></script>
 
 	
 	</body>
