@@ -145,6 +145,7 @@
 			$imagesEra = $xpathEra->query('//span/img[@class="product-image-photo"]//attribute::src');
 
 		}
+
 		?>
 
 	<?php 
