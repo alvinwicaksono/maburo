@@ -140,7 +140,7 @@
 			$domEra = new DOMDocument();
 			$domEra->loadHTML($outputEra);
 			$xpathEra = new DOMXpath($domEra);
-			$resultsEra = $xpathEra->query('//ol[@class="products list items product-items"]/li/div[@class="product-item-info"]');
+			$resultsEra = $xpathEra->query('//ol[@class="products list items product-items"]/li/div[@class="product-item-info"]/div[@class="product details product-item-details"]');
 			
 			$imagesEra = $xpathEra->query('//span/img[@class="product-image-photo"]//attribute::src');
 
@@ -210,7 +210,7 @@
 
 						<?php 
 
-						//OKE SHOP ================================>>
+						//ERAFONE ================================>>
 						foreach($resultsEra as $indexEra => $resultEra){
 						echo '<div class="item">
 								<div class="f_p_item">
