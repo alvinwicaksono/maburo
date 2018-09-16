@@ -27,7 +27,6 @@
            		<div class="container">
 					<div class="float-left">
 						<a href="#">tukuo@gmail.com</a>
-						<a href="#">Welcome to Tukuo</a>
 					</div>
 					<div class="float-right">
 						<ul class="header_social">
@@ -53,7 +52,6 @@
 							<ul class="nav navbar-nav menu_nav ml-auto">
 								<li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li> 
 								<li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
-								<li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
 							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li class="nav-item"><a class="nav-link" href="#">Login</a></li>
@@ -234,6 +232,35 @@
     <?php 
     	}
     ?>
+
+    	 <!--================Clients Logo Area =================-->
+        <section class="clients_logo_area">
+        	<div class="container">
+        		<div class="main_title">
+        			<h2>Top Brand Masa Kini</h2>
+        			<p>Daftar brand-brand terkenal dalam dunia persemartphonan.</p>
+        		</div>
+        		<div class="clients_slider owl-carousel">
+        			<div class="item">
+        				<img src="img/brands/xiaomi.png" alt="">
+        			</div>
+        			<div class="item">
+        				<img src="img/brands/apple.png" alt="">
+        			</div>
+        			<div class="item">
+        				<img src="img/brands/samsung.png" alt="">
+        			</div>
+        			<div class="item">
+        				<img src="img/brands/asus.png" alt="">
+        			</div>
+        			<div class="item">
+        				<img src="img/brands/oppo.png" alt="">
+        			</div>
+        		</div>
+        	</div>
+        </section>
+        <!--================End Clients Logo Area =================-->
+
 
         <!--================ start footer Area  =================-->	
         <footer class="footer-area">
